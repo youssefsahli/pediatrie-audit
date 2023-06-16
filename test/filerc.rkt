@@ -1,0 +1,137 @@
+#lang pedia
+
+//Prescription
+
+[Les mentions retrouvées sur les prescriptions (DCI + dosage + voie + forme, durée pour les anti-infectieux)]
+Complète 
+Partielle 
+Prescription orale
+
+[Fréquence de vérification des nouvelles prescriptions (feuille jaune qui dépasse du classeur)]
+A chaque prise de poste
+Plusieurs fois dans la journée
+Au changement de prescription
+Si le médecin me signale un changement
+
+[Respect de la prescription dans l'horaire de prise]
+Oui
+En avance
+En retard
+Oublis
+
+//Préparation/Etiquetage
+
+[La prescription est-elle consultée juste avant la préparation ?]
+Oui
+Non
+Autre:
+
+[Quels outils sont utilisés pour vérifier les modalités de dilution et administration ?]
+VIDAL
+Notice
+Protocole/Document institutionnel
+Aucun
+Autre:
+
+[Avant la préparation, vérification des 5B (médicament, dosage, concentration, voie d'administration, patient)]
+Oui complètement
+Oui partiellement
+Non
+
+[Préparation du médicament à l'avance pour le patient ?]
+Oui (Si oui, préciser le délai avant utilisation en min, les modalités de conservation et les molécules concernées)
+Non
+
+[Si plusieurs patients sous un même médicament, regroupement de la préparation ?]
+Oui
+Non, chaque préparation est réalisée patient/patient
+
+[En cas de préparation à l'avance, utilisation d'un seul plateau par patient]
+Oui
+Non
+NA
+
+[En cas de PSE/Pompe double contrôle du débit]
+Oui
+Non
+NA
+
+[En cas de calculs de dose, il est effectué]
+Uniquement au moment de la préparation
+A la préparation et au moment de l'administration
+
+[Pour les calculs de dose de MAHR, un double contrôle est effectué]
+Oui
+Non
+NA
+
+[Lieu de préparation des médicaments]
+Salle de soins / Pharmacie
+Chariot de soin dans le couloir
+Autre:
+
+[Chaque médicament préparé est reconstitué et étiqueté au cours d'une seule séquence de gestes par la même personne, sans interruption ou changement de lieu]
+Oui
+Non
+
+[Si interruption de taches lors de la préparation du médicament]
+Oui suspend et reprend la prep dès le début
+Oui suspend et reprend la prep au moment de l'interruption
+Oui et reprend la prep avec un délai
+Non
+
+[Etiquetage du médicament préparé: étiquettes institutionnelles blanches (nom patient, médicament, dosage, concentration, débit, heure de préparation, initiales IDE, ...)]
+Oui renseignements complets
+Oui renseignements partiels
+Autre étiquetage:
+Non, pas d'étiquette
+Marquage manuscrit
+
+[Pour les multidoses, étiquetage des flacons ouverts (étiquette verte avec date d'ouverture)]
+Oui
+Non
+
+//Administration
+[Préparation et administration du médicament]
+Par la même personne
+Par 2 personnes differentes
+
+[Vérification de l'identité du patient avant administration]
+Oui bracelet d'identification sur le patient
+Oui avec le prénom sur la porte de la chambre
+Oui demande orale auprès des parents si présents
+Non
+
+[Vérification de la préparation par rapport à la prescription au moment de l'administration]
+Oui
+Non
+
+[Si etiquetage incomplet ou absent, la préparation...]
+Est tout de même administrée au patient
+Est jetée et préparée à nouveau
+Est valide auprès de la personne l'ayant réalisée
+NA
+
+[Traçabilité de l'administration en temps réel ?]
+Oui
+Non
+
+[Si injectable, un rinçage de tubulure est réalisé entre chaque médicament pour limiter les incompatibilités médicamenteuses]
+Oui
+Non
+
+//Entretien
+[Respect des règles d'hygiène et connaissance des molécules à risque: "Quels mesures de protection utilisez-vous pour la préparation / administration des médicaments? Quelles sources utilisez-vous pour connaître les médicaments qui peuvent être nocives pour vous?" Ex: médicament tératogène/Anticancéreux]
+Masque
+Gants
+Lavage des mains
+Autre:
+
+[Connaissance des MAHR: "Savez vous ce qu'est un médicament à haut risque ? Pouvez-vous m'en citer ?" Expliquer ce qu'est un MAHR (MT étroite, conséquences graves si erreur, en citer)]
+Oui
+Non
+
+[Connaissance du document institutionnel pour les modalités d'administration des médicaments en pédiatrie: "Quelles sont les sources que vous utilisez pour la dilution des médicaments ?"]
+Oui
+Non
+Si Oui, Où se trouve-t-il ?:

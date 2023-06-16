@@ -1,0 +1,1 @@
+("8.9" ta6le ("b8ed0ad279130b0486478d2226af370128e28fc9" . "d308a7fa83e1c6d1c360b317f822b2c85e095d23") (collects #"br" #"quicklang.rkt") (collects #"canvas-list" #"main.rkt") (collects #"drracket" #"private" #"drracket-errortrace-key.rkt") (collects #"racket" #"class.rkt") (collects #"racket" #"gui.rkt") (collects #"racket" #"runtime-config.rkt"))
