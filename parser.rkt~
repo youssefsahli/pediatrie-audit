@@ -1,5 +1,0 @@
-#lang brag
-
-cfg ::= [title cb-label*]*
-title ::= TITLE
-cb-label ::= STRING
