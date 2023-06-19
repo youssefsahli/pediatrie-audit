@@ -1,80 +1,107 @@
-#lang racket
+#lang racket/gui
 
-(provide GuiApp%)
+(provide (all-defined-out))
 
-(require racket/gui)
+; Main Window
+(define F
+    (new frame%
+         [width 500]
+         [height 500]
+         [label "Audit Window"]))
 
-(define GuiApp%
-  (class object%
-    (super-new)
+; Main Tab Bar
+(define (tab-cb tp ev)
+  (let*
+      ([idx (send tp get-selection)]
+       [iname (send tp get-item-label idx)]
+       [vp (hash-ref H iname #f)]
+       [childvp (send tp get-children)])
 
-    (define/public (get-current-topic)
-      (send topic-tabs get-selection))
+    (for ([vp childvp])
+      (send vp reparent IW))
+              
+    (when vp
+      (send vp reparent T))))
 
-    (define/public (get-topic-name idx)
-      (send topic-tabs get-item-label idx))
-    
-    (define frame
-      (new frame%
-           [label "Pédiatrie: Résultats Audit"]
-           [width 500]
-           [height 500]))
+(define T
+    (new tab-panel%
+         [parent F]
+         [choices '()]
+         [callback tab-cb]))
 
-    (define/public (get-frame) frame)
+; Panels Hash
+(define H (make-hash))
 
-    (define vbox
-      (new vertical-panel%
-           [parent frame]))
+; Invisible Window
+(define IW
+  (new frame%
+       [label "Invisible"]))
 
-    (define/public (get-vbox) vbox)
-    
-    (define topic-tabs
-      (new tab-panel%
-           [parent vbox]
-           [callback (λ (o ce)
-                       (let* ([idx (get-current-topic)]
-                              [topic (get-topic-name idx)])
-                         (topic-tab-changed topic)))]
-                         
-           [choices '()]))
+; cfg ::= (List of vertical-panel%) -> frame%
+(define (cfg . lo-vp)
+  (send T set-selection 0)
+  (tab-cb T #f)
+  (send F show #t))
 
-    (define hash-panels (make-hash))
+; topic ::= String (List of group-box%) -> #hash(String, vertical-panel%)
+(define (topic str . lo-gp)
+  (send T append str)
+  
+  (define VP
+    (new vertical-panel%
+         [stretchable-height #t]
+         [stretchable-width #t]
+         [style '(auto-hscroll auto-vscroll)]
+         [parent IW]))
+  
+  (new message%
+       [parent VP]
+       [label str])
+  
+  (for ([gp lo-gp])
+    (send gp reparent VP))
+  
+  (hash-set! H str VP)
 
-    (define/public (get-hash-panels)
-      hash-panels)
+  H)
 
-    (define/public (get-topic-panel topic)
-      (hash-ref hash-panels topic #f))
+; title ::= String (List of check-box%) -> group-box%
+(define (title str . lo-cb)
+  (define GP
+    (new group-box-panel%
+         [stretchable-width #f]
+         [stretchable-height #f]
+         [min-width 500]
+         [min-height 150]
+         [label ""]
+         [parent IW]))
 
-    (define/public (get-current-panel)
-      (let ([N (get-topic-name (get-current-topic))])
-        (hash-ref hash-panels N)))
+  (define EdCv (new editor-canvas%
+                    [style '(transparent
+                             no-border
+                             auto-hscroll
+                             auto-vscroll)]
+                    [enabled #t]
+                    [parent GP]
+                    [editor (new text%)]))
 
-    (define/public (show [visible #t])
-      (send frame show visible))
+  (send* (send EdCv get-editor)
+    (insert str)
+    (auto-wrap #t))
+  
+  (for ([cb lo-cb])
+    (send cb reparent GP))
+  GP)
 
-    (define/public (set-topics lot)
-      (send topic-tabs set lot))
+; checkbox-label ::= String -> check-box%
+(define (checkbox-label str)
+  (new check-box%
+       [parent IW]
+       [label str]))
 
-    (define/public (add-topic str)
-      (send topic-tabs append str)
-      (add-panel str))
-
-    (define/public (add-panel key)
-      (define P (new vertical-panel%
-                     [parent vbox]))
-      (hash-set! hash-panels key P)
-      P)
-
-    (define/public (topic-tab-changed topic)
-      (println topic)
-      (send topic-tabs change-children
-            (hash-ref hash-panels topic)))
-
-    (define/public (add-title title [panel #f])
-      (let ([target (or panel (get-current-panel))])
-        (new group-box-panel%
-             [label title]
-             [parent panel])))
-        
-    ))
+; line-edit-label ::= String -> line-edit%
+(define (line-edit-label str)
+  (new text-field%
+       [stretchable-width #f]
+       [label str]
+       [parent IW]))
